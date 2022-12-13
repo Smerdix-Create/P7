@@ -1,0 +1,44 @@
+Пояснение
+
+////
+тело файла
+\\\\
+
+
+1.
+apt install apache2
+nano /etc/apache2/ports.conf
+////
+Listen 127.0.0.1:8080
+\\\\
+systemctl reload apache2
+
+
+2.
+sudo apt update 
+sudo apt install mysql-server
+sudo systemctl start mysql.service
+sudo mysql
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+mysql> exit
+sudo mysql_secure_installation
+mysql -u root -p
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH auth_socket;
+
+
+3.
+sudo apt install php
+sudo apt -y install phpmyadmin
+
+
+5.*
+apt install nginx
+apt install php-fpm
+nano /etc/nginx/sites-enabled/default
+////
+ location ~ \.php$ {
+                include snippets/fastcgi-php.conf;
+ fastcgi_pass unix:/run/php/php8.1-fpm.sock;
+\\\\
+nginx -t
+service nginx reload
